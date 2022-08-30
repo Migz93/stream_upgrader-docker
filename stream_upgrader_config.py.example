@@ -1,0 +1,71 @@
+plex_ip = ''
+plex_port = ''
+plex_api_token = ''
+
+#choose wether to upgrade a stream when there is a higher audio channel count and/or video resolution found
+process_audio = False
+process_video = True
+#choose if video resolution or audio channel count takes priority (e.g. a 1080p 5.1ch stream or a 4k 2.0ch stream)
+process_priority = 'video' #'video' or 'audio'
+
+#optional
+backup_plex_ip = ''
+backup_plex_port = ''
+backup_plex_api_token = ''
+
+#These are inclusion variables. Only streams that match these variables are influenced. These are optional
+#IMPORTANT: Inclusion variables OVERRULE exclusion variables.
+#Give the library sectionid's of the only libraries to upgrade >from<
+in_library_source_ids = []
+#Give the library sectionid's of the only libraries to upgrade >to<
+in_library_target_ids = []
+#Exactly the same as ex_library_target_ids but then for library sectionid's of the backup server.
+#Only used/useful when the backup plex server is setup
+in_library_remote_target_ids = []
+#Give the rating keys of the only media to influence.
+in_media_rating_keys = []
+#Give resolutions to only upgrade from (e.g. upgrade nothing exept a 720p stream -> add '720p' to array)
+#IMPORTANT: The following values are accepted:
+#480p
+#720p
+#1080p
+#2k
+#4k
+#6k
+#8k
+in_resolutions = []
+#Give audio channels to only upgrade from (e.g. upgrade nothing exept 5.1 channel audio -> add 6 to array)
+#IMPORTANT: fill in the total amount of channels (e.g. 5.1 = 6, 7.1.2 = 10, etc.)
+in_channels = []
+#Give client names to only upgrade audio on
+audio_in_clients = []
+#Give client names to only upgrade video on
+video_in_clients = []
+
+#These are exclution variables. Everything you put here will be excluded from upgrading. These are optional
+#Give the library sectionid's of the libraries to not upgrade >from< (e.g. If you stream a movie that is in the "4K movies - no upgrade" library and add the library's id in the array, it will not upgrade that movie, as it is coming from a library that is excluded)
+ex_library_source_ids = []
+#Give the library sectionid's of the libraries to not upgrade >to< (e.g. You're streaming from Library1 and the script found a better version in Library2. If you have the id of Library2 added to the array below, it will not upgrade as that library is excluded from upgrading to)
+ex_library_target_ids = []
+#Exactly the same as ex_library_target_ids but then for library sectionid's of the backup server. So library sectionid's that you enter here will be ignored/avoided on the backup server
+#Only used/useful when the backup plex server is setup
+ex_library_remote_target_ids = []
+#Give the rating keys of the media to ignore (e.g. if you stream Movie1 and added it's rating key below, it will not upgrade it)
+ex_media_rating_keys = []
+#Give resolutions to not upgrade from (e.g. upgrade everything unless it's a 720p stream -> add '720p' to array)
+#IMPORTANT: The following values are accepted:
+#480p
+#720p
+#1080p
+#2k
+#4k
+#6k
+#8k
+ex_resolutions = []
+#Give audio channels to not upgrade from (e.g. upgrade everything unless it's 5.1 channel audio -> add 6 to array)
+#IMPORTANT: fill in the total amount of channels (e.g. 5.1 = 6, 7.1.2 = 10, etc.)
+ex_channels = []
+#Give client names to not upgrade audio on (e.g. dont upgrade if the stream is on the "Bedroom Shield" -> add "Bedroom Shield" to array)
+audio_ex_clients = []
+#Give client names to not upgrade video on
+video_ex_clients = []
