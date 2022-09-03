@@ -169,7 +169,7 @@ def process(data):
 				or (video_in_clients and not session['Player']['title'] in video_in_clients) \
 				or (get_resolution(session, formatted=False) in ex_resolutions) \
 				or (session['librarySectionID'] in ex_library_source_ids) \
-				or (session['ratingKey'] in ex_media_rating_keys) \
+				or (session['ratingKey'] in ex_media_rating_keys)
 				else:
 					process_audio = True
 				if session['Player']['title'] in video_ex_clients:
