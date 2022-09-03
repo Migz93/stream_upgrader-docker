@@ -54,17 +54,6 @@ from plexapi.client import PlexClient
 #required for alert listener so checking here
 import websocket
 
-def get_channels(session):
-	for media in session['Media']:
-		if 'selected' in media.keys() and media['selected'] == True:
-			for part in media['Part']:
-				if 'selected' in part.keys() and part['selected'] == True:
-					for stream in part['Stream']:
-						if stream['streamType'] == 2 and 'selected' in stream.keys() and stream['selected'] == True:
-							return stream['channels']
-	logging.error('Could not find the current audio stream')
-	return 'not-found'
-
 def get_resolution(session, formatted=True):
 	for media in session['Media']:
 		if 'selected' in media.keys() and media['selected'] == True:
@@ -177,17 +166,10 @@ def process(data):
 				if (in_library_source_ids and not session['librarySectionID'] in in_library_source_ids) \
 				or (in_media_rating_keys and not session['ratingKey'] in in_media_rating_keys) \
 				or (in_resolutions and not get_resolution(session, formatted=False) in in_resolutions) \
-				or (audio_in_clients and not session['Player']['title'] in audio_in_clients) \
 				or (video_in_clients and not session['Player']['title'] in video_in_clients) \
 				or (get_resolution(session, formatted=False) in ex_resolutions) \
 				or (session['librarySectionID'] in ex_library_source_ids) \
 				or (session['ratingKey'] in ex_media_rating_keys) \
-				or (get_channels(session) in ex_channels):
-					logging.info('Detected session falls under exclusion rules so ignoring')
-					return
-				if session['Player']['title'] in audio_ex_clients:
-					logging.info('Detected session falls under exclusion rules for audio; ignoring audio upgrade')
-					process_audio = False
 				else:
 					process_audio = True
 				if session['Player']['title'] in video_ex_clients:
