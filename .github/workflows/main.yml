@@ -26,5 +26,5 @@ jobs:
     - name: Docker Push SHA
       run: docker push ${{secrets.DOCKER_USER}}/${{ github.event.repository.name }}:${{ steps.sha.outputs.sha_short }}     
     - name: Docker Push Main
-      run: docker push ${{secrets.DOCKER_USER}}/${{ github.event.repository.name }}
+      run: docker push ${{secrets.DOCKER_USER}}/${{ github.event.repository.name }}:playqueue
 
