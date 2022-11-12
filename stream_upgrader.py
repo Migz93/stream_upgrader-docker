@@ -134,12 +134,14 @@ def video(session, part_id, media_output=None):
 			key = session['key']
 			media = plex.fetchItem(key)
 			client.stop(mtype='video')
-			client.playMedia(media, offset=view_offset, key=key, mediaIndex=media_index)
+			pq = PlayQueue.create(plex, items=media, continuous=1)
+			client.playMedia(pq)
 		elif set_stream_source == 'library':
 			logging.info(f'A better video stream has been found inside a file in a different library with the resolution of {set_stream_count}')
 			media = plex.fetchItem(media_key)
 			client.stop(mtype='video')
-			client.playMedia(media, offset=view_offset, key=media_key, mediaIndex=media_index)
+            pq = PlayQueue.create(plex, items=media, continuous=1)
+			client.playMedia(pq)
 		elif set_stream_source == 'backup':
 			logging.info(f'A better video stream has been found inside a file on the backup server with the resolution of {set_stream_count}')
 			media = backup_plex.fetchItem(media_key)
