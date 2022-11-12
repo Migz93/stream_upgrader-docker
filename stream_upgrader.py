@@ -50,6 +50,7 @@ video_ex_clients = stream_upgrader_config.video_ex_clients
 import requests, argparse, time, logging, json
 from plexapi.server import PlexServer
 from plexapi.client import PlexClient
+from plexapi.playqueue import PlayQueue
 
 #required for alert listener so checking here
 import websocket
