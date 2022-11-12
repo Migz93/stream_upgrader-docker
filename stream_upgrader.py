@@ -140,7 +140,7 @@ def video(session, part_id, media_output=None):
 			logging.info(f'A better video stream has been found inside a file in a different library with the resolution of {set_stream_count}')
 			media = plex.fetchItem(media_key)
 			client.stop(mtype='video')
-            pq = PlayQueue.create(plex, items=media, continuous=1)
+			pq = PlayQueue.create(plex, items=media, continuous=1)
 			client.playMedia(pq)
 		elif set_stream_source == 'backup':
 			logging.info(f'A better video stream has been found inside a file on the backup server with the resolution of {set_stream_count}')
