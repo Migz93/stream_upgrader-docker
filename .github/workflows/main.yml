@@ -21,7 +21,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/${{ github.event.repository.name }} --tag ${{secrets.DOCKER_USER}}/${{ github.event.repository.name }}:${{ steps.sha.outputs.sha_short }}
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/${{ github.event.repository.name }}:playqueue --tag ${{secrets.DOCKER_USER}}/${{ github.event.repository.name }}:${{ steps.sha.outputs.sha_short }}
 
     - name: Docker Push SHA
       run: docker push ${{secrets.DOCKER_USER}}/${{ github.event.repository.name }}:${{ steps.sha.outputs.sha_short }}     
